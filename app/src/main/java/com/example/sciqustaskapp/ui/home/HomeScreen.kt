@@ -74,7 +74,6 @@ fun HomeScreen() {
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            // This is the content for the sidebar
             ModalDrawerSheet {
                 Box(
                     modifier = Modifier
@@ -83,7 +82,7 @@ fun HomeScreen() {
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.logo), // Use your logo
+                        painter = painterResource(id = R.drawable.logo),
                         contentDescription = "SCIQUS Logo",
                         modifier = Modifier.size(100.dp)
                     )
@@ -91,12 +90,12 @@ fun HomeScreen() {
                 NavigationDrawerItem(
                     label = { Text(text = "Home") },
                     selected = true,
-                    onClick = { scope.launch { drawerState.close() } } // Click to close
+                    onClick = { scope.launch { drawerState.close() } }
                 )
                 NavigationDrawerItem(
                     label = { Text(text = "Settings") },
                     selected = false,
-                    onClick = { scope.launch { drawerState.close() } } // Click to close
+                    onClick = { scope.launch { drawerState.close() } }
                 )
             }
         }
