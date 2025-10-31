@@ -13,12 +13,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -223,14 +225,74 @@ fun Container3() {
 
 @Composable
 fun Container4() {
+    // We'll use a Row to place items side-by-side
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            // Give it a background and rounded corners to look like a card
+            .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(8.dp))
+            .clip(RoundedCornerShape(8.dp)) // Clip the contents (like the image)
+            .padding(16.dp), // Padding inside the card
+        verticalAlignment = Alignment.CenterVertically // Center items vertically
+    ) {
+        // 1. The Image
+        Image(
+            painter = painterResource(id = R.drawable.fireworks_1),
+            contentDescription = "Static content",
+            modifier = Modifier
+                .size(80.dp) // Make the image a fixed size
+                .clip(CircleShape) // Clip the image into a circle
+        )
 
-    Column {
-        //Image(R.drawable.image_1, contentDescription = "image_1)
+        // 2. Spacer to add room between image and text
+        Spacer(modifier = Modifier.width(16.dp))
+
+        // 3. Column to stack the text vertically
+        Column(modifier = Modifier.weight(1f)) { // 'weight(1f)' makes it fill the rest
+            Text(
+                text = """The Festival of Lights — Beyond Celebration""",
+                style = MaterialTheme.typography.titleMedium // Use a pre-defined style
+            )
+            Text(
+                text = """Diwali, also known as the Festival of Lights, symbolizes the victory of light over darkness, knowledge over ignorance, and hope over despair.
+
+Traditionally, homes are adorned with diyas and rangolis — each flame representing positivity, unity, and renewal.
+
+In many ways, Diwali reflects the same spirit found in innovation: illuminating new ideas, removing the darkness of limitations, and inspiring growth through creativity.
+
+Just as every diya contributes to the festival’s brilliance, every line of thoughtful code contributes to the brilliance of technology.""",
+                style = MaterialTheme.typography.bodyMedium
+            )
+        }
     }
-
 }
 
 @Composable
 fun Container5() {
+
+    @Composable
+    fun Container5() {
+        // We use a Row to arrange items horizontally
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            // This centers the buttons horizontally in the row
+            horizontalArrangement = Arrangement.Center,
+            // This ensures they are aligned vertically
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // 1. Button A
+            Button(onClick = { /* TODO: Add interaction */ }) {
+                Text(text = "Button A")
+            }
+
+            // 2. A spacer to add 16dp of space between them
+            Spacer(modifier = Modifier.width(16.dp))
+
+            // 3. Button B
+            Button(onClick = { /* TODO: Add interaction */ }) {
+                Text(text = "Button B")
+            }
+        }
+    }
 
 }
