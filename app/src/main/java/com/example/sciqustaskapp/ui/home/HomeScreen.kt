@@ -9,15 +9,26 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.sciqustaskapp.Greeting
 import com.example.sciqustaskapp.R
 
 
+
+private val carouselImages = listOf(
+    R.drawable.diya_1,
+    R.drawable.diya_2,
+    R.drawable.diya_3
+)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen() {
@@ -30,20 +41,18 @@ fun HomeScreen() {
         ) {
 
             item {
-                //Container1
-                Text(
-                        "Yoo, this is Bhubhurv ... Thank you for having me.",
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .border(BorderStroke(1.dp, Color.Gray), RoundedCornerShape(8.dp))
-                            .padding(16.dp)
-                    )
-
-
+                Container1()
             }
 
             item {
-                Container2()
+                //Container 2
+                Text(
+                    "Yoo, this is Bhubhurv ... Thank you for having me.",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(BorderStroke(1.dp, Color.Gray), RoundedCornerShape(8.dp))
+                        .padding(16.dp)
+                )
             }
 
             item {
@@ -68,11 +77,32 @@ fun HomeScreen() {
 
 
 @Composable
-fun Container2() {
-    Text(
-        text = "THis goes for 2nd",
-        modifier = Modifier.fillMaxSize().padding(16.dp)
-    )
+fun Container1() {
+    val pagerState = rememberPagerState(pageCount = { carouselImages.size })
+
+    HorizontalPager(
+        state = pagerState,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp), // Give the carousel a fixed height
+        // This adds 16dp of space on the sides
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        // This adds 8dp of space *between* each image
+        pageSpacing = 8.dp
+    ) { pageIndex ->
+        // 'pageIndex' is the current page (0, 1, or 2)
+
+        Image(
+            painter = painterResource(id = carouselImages[pageIndex]),
+            contentDescription = "Carousel Image",
+
+            contentScale = ContentScale.Crop,
+
+            modifier = Modifier
+                .fillMaxSize()
+                .clip(RoundedCornerShape(16.dp))
+        )
+    }
 
 }
 
