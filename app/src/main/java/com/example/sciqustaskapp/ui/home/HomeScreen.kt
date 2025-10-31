@@ -1,10 +1,15 @@
 package com.example.sciqustaskapp.ui.home
 
+//import android.graphics.Color
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
@@ -25,7 +30,16 @@ fun HomeScreen() {
         ) {
 
             item {
-                Text("Yoo, this is Bhubhurv ... Thank you for having me")
+                //Container1
+                Text(
+                        "Yoo, this is Bhubhurv ... Thank you for having me.",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .border(BorderStroke(1.dp, Color.Gray), RoundedCornerShape(8.dp))
+                            .padding(16.dp)
+                    )
+
+
             }
 
             item {
@@ -50,6 +64,7 @@ fun HomeScreen() {
         }
     }
 }
+
 
 
 @Composable
